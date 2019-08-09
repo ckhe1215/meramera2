@@ -3,10 +3,20 @@
     margin : 20px auto;
 }
 
-.myPost{
-    height: 300px;
-}
+/* myPost */
+.myPost {height: 300px;}
 
-.myComment{
-    height: 300px;
+/* myComment */
+.myComment {height: 300px;}
+
+/*my Post, myComment */
+.list{
+    width: 100%;
+    box-shadow: 0 2px 2px 2px rgba(250, 214, 250, 0.5), 0 0px 10px 0 rgba(82, 67, 77, 0.19);
+    margin: 50px 0 30px auto;
+    text-align: center;
+    border-collapse: collapse;
 }
+.list .r-title td {border: 1px solid  rgb(183, 184, 185); color:  rgb(95, 95, 95);}
+.list .r-title {background-color: #FBFCFE; padding: 8px 5px; border-top: 4px #6D5473; border-bottom: 4px #6D5473; font-weight: bold; color:rgb(218, 47, 218);}
+.list td {padding: 5px 5px;}

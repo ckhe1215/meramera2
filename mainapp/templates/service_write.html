@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+        <div class="fieldWrapper">
+            <tr>
+                <td><label for="title">제목</label></td>
+                <td>{{form.title}}</td>
+            </tr>
+        </div>
+
+        <div class="fieldWrapper">
+            <tr>
+                <td><label for="text">문의내용</label></td>
+                <td>{{form.text}}</td>
+            </tr>
+        </div>
+        </table>
+    <input class="btn btn-dark" type="submit" value="문의하기">
+    <br>
+    <br>
+    </form>
+</div>
+
+{% endblock %}

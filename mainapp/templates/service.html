@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+
+<div class="container">
+    {% for complaint in complaint.all %}
+        <a href = "{% url 'service_detail' complaint.id %}">{{ complaint.title }}</a>
+        <p>{{ complaint.author }}</p>
+        <p>{{ complaint.pub_date }}</p>
+    {% endfor %}
+    <br>
+    <form action="{% url 'service_write' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-black" value="문의하기"><br><br>
+    </form>
+</div>
+
+{% endblock %}

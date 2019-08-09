@@ -1,5 +1,6 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Complaint
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -11,3 +12,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text', 'is_secret', 'is_accepted')
+
+class ComplaintForm(forms.ModelForm):
+    class Meta:
+        model = Complaint
+        fields = ('title','author','text','pub_date')
+
+        
+# class SearchForm(forms.Form):
+#     schWord = forms.CharField(label='Search Word')

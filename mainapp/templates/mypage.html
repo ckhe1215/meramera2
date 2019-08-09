@@ -6,12 +6,12 @@
 
 <div class = "container">
     <div class = "profile">
-        <table>
-            <tr>
+        <table class="table-profile">
+            <td>
                 <td rowspan="6"><img src = "{{ user.profile.profile_pic.url }}" style="margin-right: 50px; width: 300px; height: 300px"></td>
                 <td width = "130px">ID</td>
                 <td>{{ user.username }}</td>
-            </tr>
+            </td>
             <tr>
                 <td>이름</td>
                 <td>{{ user.profile.name }}</td>
@@ -34,29 +34,47 @@
         </table>
     </div>
     <hr>
+
+    <!--myPost-->
     <div class = "myPost">
         <h3>내가 쓴 글</h3>
-        <table>
+        <table class = "list">
+            <tr>
+                <td class="r-title" style="width : 5%">번호</td>
+                <td class="r-title" style="width : 50%">제목</td>
+                <td class="r-title" style="width : 15%">작성자</td>
+                <td class="r-title" style="width : 20%">작성일</td>
+            </tr>
             {% for post in mypost.all%}
                 <tr>
-                    <td>{{post.title}}</td>
-                    <td>{{post.pub_date}}</td>
+                    <td>{{ post.id }}</td>
+                    <td><a href="{% url 'detail' post.id %}">{{ post.title }}</a></td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.pub_date|date:"Y-m-d" }}</td>
                 </tr>
             {% endfor %}
         </table> 
     </div>
     <hr>
 
+    <!--myComment-->
     <div class = "myComment">
         <h3>내가 쓴 댓글</h3>
-        <table>
-                {% for comment in mycomment.all %}
-                    <tr>
-                        <td>{{comment.post.title}}</td>
-                        <td>{{comment.text}}</td>
-                    </tr>
-                {% endfor %}
-            </table> 
+        <table class="list">
+            <tr>
+                <td class="r-title" style="width : 50%">제목</td>
+                <td class="r-title" style="width : 15%">작성자</td>
+                <td class="r-title" style="width : 20%">작성일</td>
+            </tr>
+
+            {% for comment in mycomment.all %}
+                <tr>
+                    <td>{{comment.post.title}}</td>
+                    <td>{{comment.author}}</td>
+                    <td>{{comment.text}}</td>
+                </tr>
+            {% endfor %}
+        </table> 
     </div>
 </div>
 

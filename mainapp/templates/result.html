@@ -5,12 +5,12 @@
 <link rel="stylesheet" type = "text/css" href="{% static '/css/result.css' %}"/>
 
 <div class="container">
-    <table>
+    <table class="result">
         <tr>
-            <td style="width : 5%">번호</td>
-            <td style="width : 50%">제목</td>
-            <td style="width : 15%">작성자</td>
-            <td style="width : 20%">작성일</td>
+            <td class="r-title" style="width : 5%">번호</td>
+            <td class="r-title" style="width : 50%">제목</td>
+            <td class="r-title" style="width : 15%">작성자</td>
+            <td class="r-title" style="width : 20%">작성일</td>
         </tr>
 
         {% for post in post.all%}
@@ -22,7 +22,6 @@
         </tr>
         {%endfor%}
     </table>
-    <hr>
     
     <a href="{% url 'write' %}" class="btn">새 카메라 등록하기</a>
    <br><br>

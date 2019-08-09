@@ -4,15 +4,99 @@
 {% block content %}
 <link rel="stylesheet" type = "text/css" href="{% static '/css/write.css' %}"/>
 
-<div class ="container" >
-    <form method="POST" action="{% url 'write' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            {{form.as_table}} 
+<div class ="container">
+    <div class="write-wrapper">
+        <table class="table-write">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="fieldWrapper">
+                        <tr>
+                            <td class="label"><label for="title">제목</label></td>
+                            <td>{{form.title}}</td>
+                        </tr>
+                    </div>
+                    <!-- <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="author">작성자</label></td>
+                            <td>{{form.author}}</td>
+                        </tr>
+                    </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="pub_date">작성일시</label></td>
+                            <td>{{form.pub_date}}</td>
+                        </tr>
+                        </div> -->
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="image">카메라 사진</label></td>
+                            <td>{{form.image}}</td>
+                        </div>
+                        </tr>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="sort">카메라 종류</label></td>
+                            <td>{{form.sort}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="rent_date">대여가능일</label></td>
+                            <td>{{form.rent_date}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="price">가격</label></td>
+                            <td>{{form.price}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="region_sido">직거래 가능 지역(시/도)</label></td>
+                            <td>{{form.region_sido}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="region_sigungu">시/군/구</label></td>
+                            <td>{{form.region_sigungu}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="reigion_rest">기타 주소</label></td>
+                            <td>{{form.region_rest}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="choice_parcel">택배 가능 여부</label></td>
+                            <td>{{form.choice_parcel}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="use">용도</label></td>
+                            <td>{{form.use}}</td>
+                        </tr>
+                        </div>
+                        <div class="fieldWrapper">
+                        <tr>
+                            <td><label for="body">내용</label></td>
+                            <td>{{form.body}}</td>
+                        </tr>
+                        </div>
+                    </div>
+            
         </table>
-        <br>
-        <input class="btn btn-dark" type="submit" value="제출하기">
-    </form>
+
+
+        <div class="write-btn">
+            <input class="btn btn-dark" type="submit" value="제출하기">
+        </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Post
 from django.utils import timezone
-from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .models import Post, Comment, Complaint
+from .forms import PostForm, CommentForm, ComplaintForm
+from django.db.models import Q
 
+# from .filters import PostsFilter
 
 
 # Create your views here.
@@ -11,8 +13,9 @@ def index(request):
     return render(request, 'index.html')
 
 def search(request):
-    return render(request, 'search.html')
-
+	keyword = request.GET['insert_key']
+	post = Post.objects.filter( Q(title__icontains = keyword) | Q(body__icontains = keyword))
+	return render(request, 'search.html', {'post' : post})
 
 def detail(request, post_id):
     post_detail=get_object_or_404(Post, pk=post_id)
@@ -46,13 +49,14 @@ def edit(request, post_id):
 		form = PostForm(request.POST, request.FILES, instance=post)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.pub_date = timezone.now()
-			post.author = request.user
 			post.save()
 			return redirect('/detail/'+str(post.id))
 	else:
 		form=PostForm(instance=post)
 		return render(request, 'write.html', {'form':form})
+
+def introduce(request):
+	return render(request, 'introduce.html')
 
 def mypage(request):
 	user = request.user
@@ -89,3 +93,45 @@ def delete_comment(request, post_id, comment_id):
 	if request.method == 'POST':
 		comment.delete()
 		return redirect('/detail/' + str(post.id))
+
+def service(request):
+	complaint = Complaint.objects
+	return render(request, 'service.html', {'complaint': complaint})
+
+def service_detail(request, complaint_id):
+	complaint = get_object_or_404(Complaint, pk = complaint_id)
+	return render(request, 'service_detail.html', {'complaint' : complaint})
+
+def service_write(request):
+	if request.method == 'POST':
+		form = ComplaintForm(request.POST)
+		if form.is_valid():
+			complaint = form.save(commit=False)
+			complaint.pub_date = timezone.now()
+			complaint.author = request.user
+			complaint.save()
+			return redirect('service')
+	else:
+		form = ComplaintForm()           
+		return render(request, 'service_write.html', {'form':form})
+
+
+
+# class PostListView(ListView):
+# 	model = Post
+# 	template_name = 'search.html'
+
+# 	def get_queryset(self):
+# 		result = super(PostListView, slef).get_queryset()
+
+# 		query = self.request.GET.get('q')
+
+# 		if query:
+# 			query_list = query.splid()
+# 			result = result.filter(
+# 				reduce(operator.and_, (Q(title__icontains=q) for q in query_list)) |
+# 		 		reduce(operator.and_, (Q(content__icontains=q) for q in query_list))
+# 			)
+
+# 		return result
+
