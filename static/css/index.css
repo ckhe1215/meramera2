@@ -13,7 +13,7 @@
 .cont-hot .next {position: absolute; top: 47%; right: -50px;}
 
 .cont-hot .ctg-menu {float: left;}
-.cont-hot .ctg-menu li {float: left; text-align: center;}
+.cont-hot .ctg-menu li {float: left;}
 .cont-hot .ctg-menu li a {display: block; background: #EEEEEE; border-radius: 3px; font-size: 13px; color: rgb(51, 51, 51); padding: 7px 15px 10px; margin: 6px 6px;}
 .cont-hot .ctg-menu li:first-child{margin-left: 10px;}
 .cont-hot .ctg-menu li a:hover {color: white; background: #3F3440;}
@@ -21,6 +21,7 @@
 .cont-hot .hlider {width: 100%; height:170px; margin: 10px auto 10px auto; overflow: hidden;}
 .cont-hot .hlider .hlider-cell {width: 130px; height: 150px; display: inline-block; margin: 10px 20px;
     box-shadow: 0 2px 2px 2px rgba(250, 214, 250, 0.5), 0 6px 10px 0 rgba(82, 67, 77, 0.19);}
+.cont-hot .hlider .hlider-cell {width: 110px; height: 130px;}
 
 .cont .total-menu {}
 .cont-hot .total-menu .view {width: 90%; display: inline-block; font-size: 16px; background-color: #EEEEEE;
