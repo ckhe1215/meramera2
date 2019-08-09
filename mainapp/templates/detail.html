@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+<link rel="stylesheet" type = "text/css" href="{% static '/css/detail.css' %}"/>
+
+<div class="container">
+    <div class="post-detail">
+        <br>
+        <h2><strong>{{post.title}}</strong></h2>
+        <h2>{{post.author}} , {{post.pub_date}}</h2>
+        <table>
+            <tr>
+                <td rowspan="7" style="margin-right: 50px; width: 300px; height: 300px"><img src="{{post.image.url}}"></td>
+                <td width = "130px">종류</td><td>{{post.sort}}</td>
+            </tr>
+            <tr>
+                <td>대여가능날짜</td><td>{{post.rent_date}}</td>
+            </tr>
+            <tr>
+                <td>가격</td><td>{{post.price}}</td>
+            </tr>
+            <tr>
+                <td>직거래지역</td><td>{{post.region_sido}} &nbsp; {{post.region_sigungu}} &nbsp; {{post.region_rest}}</td>
+            </tr>
+            <tr>
+                <td>택배가능여부</td><td>{{post.choice_parcel}}</td>
+            </tr>
+            <tr>
+                <td>용도</td><td>{{post.use}}</td>
+            </tr>
+            <tr>
+                <td>내용</td><td>{{post.body}}</td>
+            </tr>
+        </table>
+    
+    
+
+    <form action="{% url 'edit' post.id %}" >
+        {% csrf_token %}
+        <input type="submit"  class="btn" value="수정하기">
+    </form>
+
+    <form action="{% url 'delete' post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit"  class="btn" value="삭제하기">
+    </form>
+
+    <a href="{% url 'result' %}" class="btn">돌아가기</a>
+    <br><br>
+    <hr>
+    <form action="{% url 'add_comment' post.id %}" method="POST" class="post-form">
+        {% csrf_token %}
+        <input type="submit" class="btn" value="Add Comment"><br><br>
+    </form>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <div class="date">{{comment.created_date}}</div>
+            <strong>{{comment.author}}</strong>
+            <p>{{comment.text|linebreaks}}</p>
+
+            <form method="POST" action="{% url 'delete_comment' post.id comment.id %}">
+                {% csrf_token %}
+                <input style="background-color: #fa5a5a;" type = "submit" class = "btn" value="삭제"/>
+            </form>
+        </div>
+    {% empty %}
+        <p>No comments here yet</p>
+    {% endfor %}
+
+</div>
+</div>
+<br><br>
+
+{% endblock %}

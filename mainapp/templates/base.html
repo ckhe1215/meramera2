@@ -1,0 +1,117 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+    	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width-device-width">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>메라메라</title>
+        <!-- main css -->
+        <link rel="stylesheet" href="{% static '/css/reset.css' %}">
+        <link rel="stylesheet" href="{% static '/css/total.css' %}">
+        <link rel="stylesheet" href="{% static '/css/base.css' %}">
+        <link rel="stylesheet" href="{% static '/css/index.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static '/img/favicon.png' %}">
+</head>
+
+<body>
+        <div id="wrap">
+            <!--=====Start Header Area ====-->
+            <header id="header">
+                <div class="container">
+                    <div class="header clearfix">
+                        <ul class="theme_menu clearfix">
+                            <li class="purple"><a href="#">전체메뉴</a></li>
+                            <li><a href="#">용도로찾기</a></li>
+                            <li><a href="#">장소로찾기</a></li>
+                        </ul>
+
+                        {% if user.is_authenticated %}
+                            <ul class="user_menu clearfix">
+                                <li class="log"><a href="{% url 'logout' %}">로그아웃</a></li>
+                                <li><a href="{% url 'mypage' %}">마이페이지</a></li>
+                            </ul>
+                        {% else %}
+                        <ul class="user_menu clearfix">
+                            <li class="log"><a href="{% url 'signup' %}">회원가입</a></li>
+                            <li class="log"><a href="{% url 'login' %}">로그인</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </header>
+            <!--=====End Header Area ====-->
+          
+            <!--=====Start Nav Area ====-->
+            <nav id="nav">
+                <div class="container">
+                    <div class="nav clearfix">
+                        <ul class="gnb clearfix">
+                            <li>
+                                <h1>
+                                    <a href="{% url 'index' %}">
+                                        <em><img src="{% static '/img/logo.png' %}" alt="MERAMERA"></em>
+                                    </a>
+                                </h1>
+                            </li>
+    
+                            <li>
+                                <div class="search_wrap">
+                                        <div class="search">
+                                            <input type="text" class="searchTerm" placeholder="키워드로 상품 찾기">
+                                            <button type="submit" class="searchButton">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                </div>
+                            </li>
+                        </ul>         
+                        
+                        <ul class="gnb_menu clearfix">
+                            <li><a href="{% url 'index' %}">HOME</a></li>
+                            <li><a href="#">이용방법</a></li>
+                            <li><a href="{% url 'result' %}">카메라대여</a></li>
+                            <li><a href="#">고객센터</a></li>
+                        </ul>   
+                    </div>   
+                </div>
+            </nav>
+            <!--=====End Nav Area ====-->
+        
+
+            <!--=====Start index.html Area ====-->
+            {% block content %}      
+            {% endblock %}
+            <!--=====End index.html Area ====-->
+
+
+            <!--=====Start Footer Area ====-->
+            <footer id="footer">
+                <div id="footer_info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer_info">
+                                <h2><img src="{% static '/img/footer_logo.png' %}" alt="meramera"></h2>
+                                <ul>
+                                    <li><a href="#">회사소개</a></li>
+                                    <li><a href="#">제휴/광고/부대사업 문의</a></li>
+                                    <li><a href="#">이용약관</a></li>
+                                    <li><a href="#">개인정보처리방침</a></li>
+                                    <li><a href="#">특정상거래법에 근거한 표기</a></li>
+                                </ul>
+                                <div class="address">
+                                    <p>서울특별시 강남구 도곡동 467-17</p>
+                                    <p>Like Lion 7th  |  MERAMERA  |  김하은, 김지현, 박지형, 이지민</p>
+                                    <p>　</p>
+                                    <p>Copyright 2019 by MERAMERA, Inc. All rights reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </body>
+</html>

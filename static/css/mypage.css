@@ -1,0 +1,12 @@
+.container .profile{
+    width : 700px;
+    margin : 20px auto;
+}
+
+.myPost{
+    height: 300px;
+}
+
+.myComment{
+    height: 300px;
+}

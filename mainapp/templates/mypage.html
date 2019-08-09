@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+<link rel="stylesheet" type = "text/css" href="{% static '/css/mypage.css' %}"/>
+
+<div class = "container">
+    <div class = "profile">
+        <table>
+            <tr>
+                <td rowspan="6"><img src = "{{ user.profile.profile_pic.url }}" style="margin-right: 50px; width: 300px; height: 300px"></td>
+                <td width = "130px">ID</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>이름</td>
+                <td>{{ user.profile.name }}</td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td>{{ user.profile.phone }}</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>{{ user.profile.region_sido }} {{ user.profile.region_sigungu }}</td>
+            </tr>
+            <tr>
+                <td colspan="2"> <a href ="#">회원 정보 수정</a></td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class = "myPost">
+        <h3>내가 쓴 글</h3>
+        <table>
+            {% for post in mypost.all%}
+                <tr>
+                    <td>{{post.title}}</td>
+                    <td>{{post.pub_date}}</td>
+                </tr>
+            {% endfor %}
+        </table> 
+    </div>
+    <hr>
+
+    <div class = "myComment">
+        <h3>내가 쓴 댓글</h3>
+        <table>
+                {% for comment in mycomment.all %}
+                    <tr>
+                        <td>{{comment.post.title}}</td>
+                        <td>{{comment.text}}</td>
+                    </tr>
+                {% endfor %}
+            </table> 
+    </div>
+</div>
+
+{% endblock %}

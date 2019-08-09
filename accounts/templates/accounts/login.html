@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 20px; margin-bottom:20px">
+    <h1>로그인</h1>
+
+    {% if error %}
+    {{ error }}
+    <br>
+    <br>
+    {% endif %}
+
+    <form method="POST" action = "{% url 'login' %}">
+        {% csrf_token %}
+        Username:
+        <br>
+        <input name="username" type="text" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password" type="password" value="">
+        <br>
+        <br>
+        <input class = "btn" type="submit" value="로그인"> 
+    </form>
+</div>
+
+{% endblock %}
